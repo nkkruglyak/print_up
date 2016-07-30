@@ -13,6 +13,7 @@ app = Flask(__name__)
 def index_page():
     return render_template('index.html')
 
+
 @app.route('/exif', methods=['GET','POST'])
 def get_exif():
     if request.method == 'POST':
@@ -31,12 +32,13 @@ def get_exif():
                             mimetype="application/json")
             return resp
 
+
 @app.route('/uploads', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
         if file.filename:
-            filename = secure_filename(file.filename)
+            filename = file.filename
             path = os.path.abspath('./server_im')
             full_path = os.path.join(path, filename)
             down_path = os.path.join(path, 'new.jpg')
@@ -50,9 +52,7 @@ def upload_file():
     return render_template('404.html')
 
 
-
-
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=int("5000"))
+    app.run()
     del_files('./server_im')
 

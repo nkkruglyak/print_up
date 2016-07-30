@@ -1,4 +1,3 @@
-"""All path need there"""
 import os
 def del_files(path_dir):
     path = os.path.abspath(path_dir)
@@ -7,4 +6,3 @@ def del_files(path_dir):
         full_path = os.path.join(path, file)
         os.remove(full_path)
 
-del_files('./server_im')

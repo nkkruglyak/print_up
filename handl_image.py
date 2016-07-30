@@ -15,9 +15,8 @@ class HandlImage(object):
 
 
     def change_size(self,down_path,size):
-        """size is tuple, ex (64,64)
+        """size must be 2-tuple
         """
-
         img = self.image.resize(size,Image.ANTIALIAS)
         img.save(down_path, "JPEG")
 
@@ -38,7 +37,7 @@ class HandlImage(object):
         exif_data = self.image._getexif()
         decoded_exif = dict(map(lambda t: (self.convert(t[0]), self.convert(t[1])), exif_data.items()))
         return json.dumps(decoded_exif)
-        #return decoded_exif
+
 
 
 if __name__ == '__main__':
